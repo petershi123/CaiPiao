@@ -1,0 +1,13 @@
+package
+{
+	import flash.display.Sprite;
+	
+	[SWF(width="800",height="760",backgroundColor="0x000066",frameRate="12")]
+	public class UpdateTest extends Sprite
+	{
+		public function UpdateTest()
+		{
+			
+		}
+	}
+}

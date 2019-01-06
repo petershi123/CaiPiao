@@ -1,0 +1,859 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\webroot\kuai3</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_Themes/Standard/GridView.skin">
+      <publishTime>05/28/2008 21:04:18</publishTime>
+    </File>
+    <File Include="App_Themes/Standard/ListBox.skin">
+      <publishTime>07/01/2007 09:32:02</publishTime>
+    </File>
+    <File Include="bin/CKFinder.dll">
+      <publishTime>05/08/2012 18:46:01</publishTime>
+    </File>
+    <File Include="bin/CKFinder.pdb">
+      <publishTime>05/08/2012 18:45:48</publishTime>
+    </File>
+    <File Include="bin/FrameWork.dll">
+      <publishTime>05/25/2015 19:35:07</publishTime>
+    </File>
+    <File Include="bin/FrameWork.pdb">
+      <publishTime>05/25/2015 19:35:07</publishTime>
+    </File>
+    <File Include="bin/FrameWork.web.dll">
+      <publishTime>09/01/2017 17:45:28</publishTime>
+    </File>
+    <File Include="bin/FrameWork.web.pdb">
+      <publishTime>09/01/2017 17:45:28</publishTime>
+    </File>
+    <File Include="checkUserApi.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="getqi.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="gettime.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Index.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Jiang.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="JS/category_filter.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="JS/chinese_date.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="JS/common.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="JS/jquery.cookie.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="JS/jQuery.Hz2Py-min.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="JS/JQuery.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/about.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/admin/Bas_Lottery/add.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/admin/Bas_Lottery/Default.aspx">
+      <publishTime>06/27/2015 18:20:08</publishTime>
+    </File>
+    <File Include="Manager/admin/Bas_Lottery/Manager.aspx">
+      <publishTime>06/27/2015 18:24:57</publishTime>
+    </File>
+    <File Include="Manager/admin/Bas_Lottery/web.config">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/admin/Bas_Lottery/WebForm1.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/admin/Bas_User/Default.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/admin/Bas_User/Manager.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/admin/Bas_User/web.config">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/admin/BAS_UserInfo.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/admin/Web.config">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Css/Menu1.css">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Css/Site_Css.css">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Css/Table/blue/css.css">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Css/Table/blue/images/header_bg.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Css/Table/default/css.css">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Css/Table/Green/css.css">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Css/Table/red/css.css">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Default.aspx">
+      <publishTime>10/04/2015 18:16:05</publishTime>
+    </File>
+    <File Include="Manager/DownLoadFile.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/about.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/allow.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Button_On.GIF">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Button_Over.GIF">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/controls4.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/disable.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/down01.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Help.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/house.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/1.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/10.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/2.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/3.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/4.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/5.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/6.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/7.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/8.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/9.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/a.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/applist.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/Area.png">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/b.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/back.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/bug.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/Colume.png">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/config.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/Custom.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/default.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/delete.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/doc.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/edit.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/FieldManager.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/generic.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/grouplist.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/html2.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/icon.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/Line.png">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/list.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/log.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/look.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/module.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/move.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/new.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/office.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/online.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/orderby.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/paperclip.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/ppt.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/print.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/print_icon.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/rule.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/select.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/sound.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/status.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/txt.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/user.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/xls.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/ICON/zip.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Index/menu1bg.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/menubg.jpg">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-2-1.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-2-2.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b-1.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b-2-1-2.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b-2-2.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b-2.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b-3-2.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b-3.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b4-1.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b4-2.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b4-b.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b4-c.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Index/top-b4-yellow.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/info.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/log.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logo.jpg">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_1.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_10.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_11.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_18.jpg">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_2.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_3.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_4.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_5.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_6.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_7.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_7no.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_8.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logon/Logon_9.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/logout.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/arrow.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/box_bg.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/box_bottom.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/box_topbg.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/box_topleft.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/box_topright.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/close.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/close_on.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/Cshare.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/Delphi.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/folder_add.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/folder_move.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/open.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/open_on.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/Perl.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/PHP.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/tab_active_bg.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/tab_active_left.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/tab_active_right.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/tab_bg.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/tab_top_bg.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/tab_unactive_bg.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/tab_unactive_left.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/tab_unactive_right.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/Menu/twist.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/MessageIcon/MessageAlert.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/MessageIcon/MessageBody.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/MessageIcon/MessageEnd.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/MessageIcon/MessageError.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/MessageIcon/MessageHead.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/MessageIcon/MessageOk.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/NotImage.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/openwin.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/right.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/sort_asc.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/sort_desc.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/thead_bg.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/Title.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/top-gray.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2blank.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2doc.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2folderclosed.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2folderopen.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2lastnode.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2mlastnode.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2mnode.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2node.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2plastnode.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2pnode.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/ftv2vertline.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/TreeIcon/refurbish.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/images/up01.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/userset.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/wrong.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/images/zxjg-left-banner.jpg">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/inc/Codeimg.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/1.htm">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/css/subModal.css">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/Images/left-corners.png">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/Images/left-right.png">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/Images/maskBG.png">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/Images/right-corners.png">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/Images/tool-sprites.gif">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/Images/top-bottom.png">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/js/common.js">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/js/subModal.js">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/inc/FineMessBox/loading.html">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/inc/Page_Guage.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/js/checkform.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/js/date/date.js">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/MoveTree.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/js/SelectTree.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/js/Tree.js">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/js/lTREE.js">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/js/lTREE.packed.js">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/css/lTREE.checkbox.css">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/css/lTREE.default.css">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/css/lTREE.simple.css">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/base.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/checkbox-checked.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/checkbox.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/elbow-end.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/elbow-line.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/elbow.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/folder-closed.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/folder-last.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/folder-opened.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/leaf-last.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/leaf-normal.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/leaf.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/minus.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/resources/images/default/tree/plus.gif">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/js/Tree/tree.html">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/left.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Login.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/LoginOut.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/main.htm">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/MasterPage/PageTemplate.Master">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Menu1.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Menu1_Button.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Menu1_Disp.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Menu2.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/menu3.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Messages.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/AppManager/AppManager.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/AppManager/List.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/AppManager/Orderby.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/AppManager/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/EventManager/default.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/EventManager/EventDisp.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/EventManager/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/FieldManager/default.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/FieldManager/FieldValueBox.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/FieldManager/FieldValueManager.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/FieldManager/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/GroupManager/CatIndex.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/GroupManager/Edit.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/GroupManager/Frame.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/GroupManager/GroupList.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/GroupManager/Move.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/GroupManager/New.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/GroupManager/Orderby.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/GroupManager/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/ModuleManager/List.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/ModuleManager/ModuleList.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/ModuleManager/moduleManager.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/ModuleManager/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/OnlineUserManager/default.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/OnlineUserManager/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/RoleManager/RoleList.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/RoleManager/RoleManager.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/RoleManager/RolePermissionManager.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/RoleManager/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/UserManager/Default.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/UserManager/Default1.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/UserManager/SelectGroup.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/UserManager/UserManager.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemApp/UserManager/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemMaintenance/SystemConfig/default.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemMaintenance/SystemConfig/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemMaintenance/SystemErrorLog/default.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemMaintenance/SystemErrorLog/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemMaintenance/SystemState/default.aspx">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/Module/FrameWork/SystemMaintenance/SystemState/Web.config">
+      <publishTime>12/27/2013 14:02:41</publishTime>
+    </File>
+    <File Include="Manager/mylogin.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/OpenFullWin.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/UserSet.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/UserSet_Pas.aspx">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="Manager/Web.config">
+      <publishTime>12/27/2013 14:02:40</publishTime>
+    </File>
+    <File Include="OffLine.aspx">
+      <publishTime>09/12/2014 09:53:28</publishTime>
+    </File>
+    <File Include="OnLine.aspx">
+      <publishTime>09/12/2014 09:52:09</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/01/2017 17:43:47</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

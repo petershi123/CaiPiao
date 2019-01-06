@@ -1,0 +1,17 @@
+﻿2013/10/28 19:23:22|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 19:23:48|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 19:23:52|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 19:23:53|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 19:24:24|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 19:51:59|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:02:23|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:08:38|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:08:48|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:08:49|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:08:52|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:08:54|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:08:56|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:09:02|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:09:23|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:10:25|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico
+2013/10/28 22:12:09|文件不存在:http://localhost:8888/favicon.ico|127.0.0.1|/favicon.ico

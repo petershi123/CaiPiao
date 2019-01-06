@@ -1,0 +1,11 @@
+﻿2013/09/17 23:02:03|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:03|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:08|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:10|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:10|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:19|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:22|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:26|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:26|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:30|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico
+2013/09/17 23:02:33|文件不存在:http://localhost:5555/favicon.ico|127.0.0.1|/favicon.ico

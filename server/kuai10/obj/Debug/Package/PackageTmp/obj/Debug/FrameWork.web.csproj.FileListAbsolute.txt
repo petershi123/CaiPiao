@@ -1,0 +1,7 @@
+D:\mykanbox\CaiPiao\server\kuai10\obj\Debug\FrameWork.web.csprojResolveAssemblyReference.cache
+D:\mykanbox\CaiPiao\server\kuai10\bin\FrameWork.web.dll
+D:\mykanbox\CaiPiao\server\kuai10\bin\FrameWork.web.pdb
+D:\mykanbox\CaiPiao\server\kuai10\obj\Debug\FrameWork.web.dll
+D:\mykanbox\CaiPiao\server\kuai10\obj\Debug\FrameWork.web.pdb
+D:\mykanbox\CaiPiao\server\kuai10\bin\FrameWork.pdb
+D:\mykanbox\CaiPiao\server\kuai10\bin\FrameWork.xml

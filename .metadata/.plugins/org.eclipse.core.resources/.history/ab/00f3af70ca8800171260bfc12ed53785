@@ -1,0 +1,461 @@
+package
+{
+	import fl.controls.CheckBox;
+	import fl.controls.RadioButtonGroup;
+	
+	import flash.display.Loader;
+	import flash.display.NativeWindow;
+	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
+	import flash.events.NetStatusEvent;
+	import flash.events.TimerEvent;
+	import flash.net.InterfaceAddress;
+	import flash.net.NetworkInfo;
+	import flash.net.NetworkInterface;
+	import flash.net.SharedObject;
+	import flash.net.SharedObjectFlushStatus;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.net.URLRequestMethod;
+	import flash.net.URLVariables;
+	import flash.system.*;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.utils.Timer;
+	import flash.utils.setTimeout;
+	
+	[SWF(width="1280",height="760",backgroundColor="0x000066",frameRate="12")]
+	public class CaiPiao extends Sprite
+	{
+		public static var _preURL:String = "http://gxsf";//"http://klsf";//"http://game.ttgw08.com";//"http://gxsf.cczkw.com";//"http://sfkj.ttgw08.com";  //"http://klsf.cczkw.com";// "http://ads114.jzg520.com";	//"http://103.243.130.16"; 
+		public static var userName:String;
+		public static var timeOffset:Number;	//服务器与客户端时间的差值
+		
+		private var _updateSp:Sprite;		// 更新界面
+		private var _loadMc:_Loading;		// 更新进度显示
+		
+		private var _win:NativeWindow;
+		private var _main:MainView;
+		public var _login:_LoginWin;
+		private var _macIP:String;
+		private var so:SharedObject;
+		private var alertTxt:TextField;
+		private var heartTime:Timer;
+		private var count:int  = 0;
+		
+		private var upManger:UpdateManager;
+		
+		public static var _loginURL:String = "http://qq.cczkw.com";
+		public var _soundSwitch:Boolean = true;
+		public var _isMainLoginServer:Boolean = true;
+		
+		public function CaiPiao()
+		{
+			this.addEventListener(Event.ADDED_TO_STAGE,	addStageHandle);
+		}
+		
+		private function addStageHandle(evt:Event):void
+		{
+			initStage();
+			checkVersion();
+			initWin();
+		}
+		
+		private function initStage():void
+		{
+			stage.scaleMode=StageScaleMode.EXACT_FIT;
+			stage.align=StageAlign.TOP_LEFT;
+		}
+		
+		private function checkVersion():void
+		{
+			upManger = new UpdateManager();
+			upManger.initUpdater(this);
+		}
+		
+		private function initWin():void
+		{
+			_win=stage.nativeWindow;
+			_win.activate();
+			_login=new _LoginWin();
+			this.addChild(_login);
+			var tf:TextFormat=new TextFormat("宋体",18);
+			_login.cbox.setStyle("textFormat",tf);
+			_login.soundcbox.setStyle("textFormat",tf);
+			_login.server1.setStyle("textFormat",tf);
+			_login.server2.setStyle("textFormat",tf);
+			_login.confirmBtn.addEventListener(MouseEvent.CLICK,	onLoginHandler);
+			_login.soundcbox.addEventListener(MouseEvent.CLICK,		onSoundHandler);
+			
+			var radioGroup:RadioButtonGroup = _login.server1.group;
+			radioGroup.addEventListener(Event.CHANGE,	onServerChange);
+			
+			_login.userNameTxt.addEventListener(KeyboardEvent.KEY_DOWN,	onKeyDownHandler);
+			_login.passwordTxt.addEventListener(KeyboardEvent.KEY_DOWN,	onKeyDownHandler);
+			_login.confirmBtn.setSize(98,50);
+			_login.confirmBtn.setStyle("textFormat",tf);
+			_login.scaleX = 2;
+			_login.scaleY = 1.6;
+			
+			_login.confirmBtn.enabled = false;
+			setTimeout(function():void{_login.confirmBtn.enabled = true;},2000);
+			
+			_login.x = (stage.stageWidth-_login.width)/2;
+			_login.y = (stage.stageHeight-_login.height)/2;
+			
+			alertTxt = new TextField();
+			_login.addChild(alertTxt);
+			alertTxt.width = 181;
+			alertTxt.height = 27;
+			alertTxt.defaultTextFormat = new TextFormat("宋体",20,0xFF0000);
+			alertTxt.x = 600;
+			alertTxt.y = 446;
+			
+			var so:SharedObject = SharedObject.getLocal("login");
+			if(null != so.data.userName && null != so.data.password)
+			{
+				var user:String = so.data.userName as String;
+				var pass:String = so.data.password as String;
+				_login.userNameTxt.text=user;
+				_login.passwordTxt.text=pass;
+				_login.cbox.selected=true;
+			}
+			else
+			{
+				_login.cbox.selected=false;
+			}
+			if(so.data.openSound != null && so.data.openSound == false)
+			{
+				_login.soundcbox.selected = false;
+				_soundSwitch = false;
+			}
+			else
+			{
+				_login.soundcbox.selected = true;
+				_soundSwitch = true;
+			}
+			//======================================
+			if(so.data.selectMainServer != null && so.data.selectMainServer == false)
+			{
+				_login.server2.selected = true;
+				_isMainLoginServer = false;
+			}
+			else
+			{
+				_login.server1.selected = true;
+				_isMainLoginServer = true;
+			}
+		}
+		private function onSoundHandler(evt:Event):void
+		{
+			var cb:CheckBox = evt.target as CheckBox;
+			if(cb.selected == true)
+			{
+				_soundSwitch = true;
+			}
+			else
+			{
+				_soundSwitch = false;
+			}
+		}
+		private function onServerChange(evt:Event):void
+		{
+			var rgb:RadioButtonGroup = evt.target as RadioButtonGroup;
+			trace("rgb.selectedData = "+rgb.selectedData);
+			if(rgb.selectedData == 1)
+			{
+				_isMainLoginServer = true;
+			}
+			else
+			{
+				_isMainLoginServer = false;
+			}
+		}
+		
+		private function onKeyDownHandler(evt:KeyboardEvent):void
+		{
+			if(evt.keyCode == 8)
+			{
+				var so:SharedObject = SharedObject.getLocal("login");
+				if(null != so && null != so.data.userName && null != so.data.password)
+				{
+					delete so.data.userName;
+					delete so.data.password;
+					so.flush();
+				}
+			}
+			
+		}
+		
+		public function showUpdateWin():void
+		{
+			_updateSp = new Sprite();
+			_updateSp.graphics.beginFill(0x000000,0.2);
+			_updateSp.graphics.drawRect(0,0,1294,800);
+			_updateSp.graphics.endFill();
+			this.addChild(_updateSp);
+			
+			var frame:_UpdateFrame = new _UpdateFrame();
+			_updateSp.addChild(frame);
+			frame.scaleX = 1.5;
+			frame.scaleY = 1.5;
+			
+			frame.x = (1294-frame.width)/2;
+			frame.y = (800-frame.height)/2;
+			
+			frame.confirmBtn.addEventListener(MouseEvent.CLICK,	onConfirmClick);
+			frame.cancelBtn.addEventListener(MouseEvent.CLICK,	onCancelClick);
+			
+			function onConfirmClick(evt:MouseEvent):void
+			{
+				upManger.update();
+				_updateSp.removeChild(frame);
+				
+				_loadMc = new _Loading();
+				_updateSp.addChild(_loadMc);
+				_loadMc.scaleX = 1.5;
+				_loadMc.scaleY = 1.5;
+				
+				_loadMc.x = (1294-_loadMc.width)/2;
+				_loadMc.y = (800-_loadMc.height)/2;
+				_loadMc.numTxt.text = "0%";
+				_loadMc.loadingBar.scaleX = 0;
+			}
+			
+			function onCancelClick(evt:MouseEvent):void
+			{
+				removeChild(_updateSp);
+			}
+			
+		}
+		
+		public function showLoading(loaded:Number,total:Number):void
+		{
+			var scal:Number = loaded/total;
+			_loadMc.loadingBar.scaleX = scal;
+			var resultStr:String = String(scal*100).substr(0,4) + "%";
+			_loadMc.numTxt.text = resultStr;
+			if(scal > 0.96)
+			{
+				_loadMc.numTxt.text = "100%";
+			}
+		}
+		
+		private function onLoginHandler(evt:MouseEvent):void
+		{
+			alertTxt.text="";
+			var urlloader:URLLoader=new URLLoader();
+			var userStr:String=_login.userNameTxt.text;
+			var passStr:String=_login.passwordTxt.text as String;
+			userName = userStr;
+			
+			if(_isMainLoginServer == true)
+			{
+				CaiPiao._loginURL = CaiPiao._preURL;
+			}
+			else
+			{
+				CaiPiao._loginURL = "http://kksf1588.mykcai.cn";
+			}
+			
+			var request:URLRequest=new URLRequest(CaiPiao._loginURL+"/checkUserApi.aspx?user="+userStr+"&pass="+passStr);
+			request.method=URLRequestMethod.GET;
+			urlloader.load(request);
+			urlloader.addEventListener(Event.COMPLETE,	onLoginComplete);
+			urlloader.addEventListener(IOErrorEvent.IO_ERROR,	onErrorHandler);
+			var flashStatus:String=null;
+			so = SharedObject.getLocal("login");
+			if(_login.cbox.selected==true)
+			{
+				so.data.userName=userStr;
+				so.data.password=passStr;
+			}
+			else
+			{
+				if(null != so && null != so.data.userName && null != so.data.password)
+				{
+					delete so.data.userName;
+					delete so.data.password;
+				}
+			}
+			so.data.openSound = (_login.soundcbox.selected == true);
+			so.data.selectMainServer = (_login.server1.selected == true);
+			
+			try
+			{
+				flashStatus = so.flush();
+			}
+			catch(err:Error)
+			{
+				trace("Error...Could not write SharedObject to disk\n")
+			}
+			
+			if(flashStatus != null)
+			{
+				switch(flashStatus)
+				{
+					case SharedObjectFlushStatus.PENDING:
+						so.addEventListener(NetStatusEvent.NET_STATUS,	onFlushStatus);
+						break;
+					case SharedObjectFlushStatus.FLUSHED:
+						trace("Value flushed to disk.\n");
+						break;
+				}
+			}
+		}
+		private function onErrorHandler(err:IOErrorEvent):void
+		{
+			
+		}
+		private function onFlushStatus(event:NetStatusEvent):void
+		{
+			switch(event.info.code)
+			{
+				case "SharedObject.Flush.Success":
+					trace("User granted permission--value saved");
+					break;
+				case "SharedObject.Flush.Failed":
+					trace("User denied permission--value not saved");
+					break;
+			}
+			so.removeEventListener(NetStatusEvent.NET_STATUS,	onFlushStatus);
+		}
+		private function onLoginComplete(evt:Event):void
+		{
+			var re:String=evt.currentTarget.data as String;
+			if("ok"==re.substr(0,2))
+			{
+				getServerTimerOffset()
+				
+			}
+			else if("online" == re.substr(0,6))
+			{
+				alertTxt.text="该用户正在登录";
+			}
+			else if("no"==re.substr(0,2))
+			{
+				alertTxt.text="用户名或密码错误！";
+			}
+		}
+		
+		private function getServerTimerOffset():void
+		{
+			Http.getFromServer(CaiPiao._loginURL+"/gettime.aspx?r="+Math.random(),callback);
+			function callback(evt:Event):void
+			{
+				var timeStr:String = String(evt.target.data);
+				var arr:Array = timeStr.split("-");
+				var dateServer:Date = new Date(int(arr[0]),int(arr[1]),int(arr[2]),int(arr[3]),int(arr[4]),int(arr[5]),int(arr[6]));
+				var datalocal:Date = new Date();
+				trace(dateServer.getTime(),datalocal.getTime());
+				timeOffset = dateServer.getTime() - datalocal.getTime();
+				init();
+				onLinkHeart();
+				_login.passwordTxt.text = "";
+			}
+		}
+		
+		private function init():void
+		{
+			initView();
+			//getMacAdress();
+			startHeart();
+		}
+		private function initView():void
+		{
+			_main=new MainView();
+			this.addChild(_main);
+			_main.init();
+			_main.playerHaoSound = !_soundSwitch;
+			_main.prizeSound = _soundSwitch
+			_main.x=-5;
+			stage.nativeWindow.addEventListener(Event.RESIZE,	onResize);
+			
+				
+		}
+		
+		/*开始心跳*/
+		private function startHeart():void
+		{
+			stage.nativeWindow.addEventListener(Event.CLOSING,	onClosehandler);
+			heartTime = new Timer(10000,int.MAX_VALUE);
+			heartTime.addEventListener(TimerEvent.TIMER,		onLinkHeart);
+			heartTime.start();
+		}
+		private function onClosehandler(evt:Event):void
+		{
+			evt.preventDefault();
+			var urlloader:URLLoader = new URLLoader();
+			urlloader.load(new URLRequest(CaiPiao._preURL+"/OffLine.aspx?user="+_login.userNameTxt.text));
+			urlloader.addEventListener(Event.COMPLETE,			onComplete);
+			urlloader.addEventListener(IOErrorEvent.IO_ERROR,	onError);
+			function onComplete(evt:Event):void
+			{
+				if(heartTime != null)
+				{
+					heartTime.stop();
+					heartTime.removeEventListener(TimerEvent.TIMER,		onLinkHeart);
+				}
+				
+				stage.nativeWindow.close();
+			}
+			function onError(err:IOErrorEvent):void
+			{
+				stage.nativeWindow.close();
+			}
+		}
+		private function onLinkHeart(evt:TimerEvent=null):void
+		{
+			if(userName == "")
+			{
+				_main.clearListener();
+				removeChild(_main);
+				_main = null;
+				count=0;
+				return;
+			}
+			var uloader:URLLoader = new URLLoader();
+			var request:URLRequest = new URLRequest(CaiPiao._preURL+"/OnLine.aspx?user="+userName+"&count="+count);
+			uloader.load(request);
+			uloader.addEventListener(Event.COMPLETE,		onComplete);
+			uloader.addEventListener(IOErrorEvent.IO_ERROR,	onError);
+			count++;
+			function onComplete(evt:Event):void
+			{
+				var re:String=evt.currentTarget.data as String;
+				if("no"==re.substr(0,2))
+				{
+					_main.unloadSWF();
+					_main.clearListener();
+					removeChild(_main);
+					_main = null;
+					count=0;
+				}
+			}
+			function onError(err:IOErrorEvent):void
+			{
+				
+			}
+		}
+		
+		
+		private var statemode:String = "";
+		private function onResize(evt:Event):void
+		{
+			//trace("_main.scaleX,_main.scaleY:"+_main.scaleX,_main.scaleY);
+			//trace("stage.stageWidth,stage.stageHeight,_main.width,_main.height:"+stage.stageWidth,stage.stageHeight,_main.width,_main.height);
+			//_main.scaleX = 1;
+			//_main.scaleY = 1;
+			/*if(stage.nativeWindow.displayState)
+			{
+				stage.nativeWindow.maximize();
+			}*/
+			_main.onResize();
+		}
+	}
+}

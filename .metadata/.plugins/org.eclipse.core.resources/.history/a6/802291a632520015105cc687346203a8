@@ -1,0 +1,15 @@
+package
+{
+	import flash.display.Sprite;
+	import flash.text.TextField;
+	
+	[SWF(width="900",height="600",backgroundColor="0x000066",frameRate="12")]
+	public class UpdateTest extends Sprite
+	{
+		private var texfield:TextField;
+		public function UpdateTest()
+		{
+			
+		}
+	}
+}

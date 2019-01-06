@@ -1,0 +1,626 @@
+package
+{
+	import fl.controls.CheckBox;
+	import fl.controls.RadioButtonGroup;
+	
+	import flash.display.Loader;
+	import flash.display.NativeWindow;
+	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
+	import flash.events.NetStatusEvent;
+	import flash.events.TimerEvent;
+	import flash.net.InterfaceAddress;
+	import flash.net.NetworkInfo;
+	import flash.net.NetworkInterface;
+	import flash.net.SharedObject;
+	import flash.net.SharedObjectFlushStatus;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.net.URLRequestMethod;
+	import flash.net.URLVariables;
+	import flash.system.*;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.utils.Timer;
+	import flash.utils.setTimeout;
+	
+	[SWF(frameRate="12")]
+	public class TwoCaiPiao extends Sprite
+	{
+		public static var _preURL:String = "http://gxsf";	//"http://gxsf13.xhcs188.com/";//"http://gxsf.cczkw.com"; //"http://ads114.jzg520.com";
+		public static var _loginURL:String;
+		public static var _ksLink:String = "http://gxks16.xhcs188.com/";
+		public static var _sfLink:String;
+		
+		public var _soundSwitch:Boolean = true;
+		public var _isMainLoginServer:Boolean = true;
+		
+		public static var userName:String;
+		private var _updateSp:Sprite;		// 更新界面
+		private var _loadMc:_Loading;		// 更新进度显示
+		
+		private var so:SharedObject;
+		private var _win:NativeWindow;
+		public var _login:_LoginWin;
+		private var alertTxt:TextField;
+		private var count:int  = 0;
+		private var heartTime:Timer;
+		
+		private var sfloader:Loader;
+		private var ksloader:Loader;
+		private var changeTimer:Timer;
+		
+		private var upManger:UpdateManager;
+		
+		public function TwoCaiPiao()
+		{
+			this.addEventListener(Event.ADDED_TO_STAGE,	addStageHandler);
+		}
+		private function addStageHandler(evt:Event):void
+		{
+			initStage();
+			checkVersion();
+			initWin();
+		}
+		private function initStage():void
+		{
+			stage.scaleMode=StageScaleMode.EXACT_FIT;
+			stage.align=StageAlign.TOP_LEFT;
+		}
+		
+		private function checkVersion():void
+		{
+			upManger = new UpdateManager();
+			upManger.initUpdater(this);
+		}
+		private function initWin():void
+		{
+			_win=stage.nativeWindow;
+			_win.activate();
+			
+			_login=new _LoginWin();
+			this.addChild(_login);
+			var tf:TextFormat=new TextFormat("宋体",18);
+			_login.cbox.setStyle("textFormat",tf);
+			_login.soundcbox.setStyle("textFormat",tf);
+			_login.server1.setStyle("textFormat",tf);
+			_login.server2.setStyle("textFormat",tf);
+			_login.confirmBtn.addEventListener(MouseEvent.CLICK,	onLoginHandler);
+			_login.soundcbox.addEventListener(MouseEvent.CLICK,		onSoundHandler);
+			
+			var radioGroup:RadioButtonGroup = _login.server1.group;
+			radioGroup.addEventListener(Event.CHANGE,	onServerChange);
+			
+			_login.userNameTxt.addEventListener(KeyboardEvent.KEY_DOWN,	onKeyDownHandler);
+			_login.passwordTxt.addEventListener(KeyboardEvent.KEY_DOWN,	onKeyDownHandler);
+			_login.confirmBtn.setSize(98,50);
+			_login.confirmBtn.setStyle("textFormat",tf);
+			_login.scaleX = 0.8;
+			_login.scaleY = 0.8;
+			_login.confirmBtn.enabled = false;
+			setTimeout(function():void{_login.confirmBtn.enabled = true;},2000);
+			
+			_login.x = (stage.stageWidth-_login.width)/2;
+			_login.y = (stage.stageHeight-_login.height)/2;
+			
+			alertTxt = new TextField();
+			_login.addChild(alertTxt);
+			alertTxt.width = 181;
+			alertTxt.height = 27;
+			alertTxt.mouseEnabled = false;
+			alertTxt.defaultTextFormat = new TextFormat("宋体",20,0xFF0000);
+			alertTxt.x = 600;
+			alertTxt.y = 446;
+			
+			var so:SharedObject = SharedObject.getLocal("loginTwo");
+			if(null!=so.data.userName)
+			{
+				var user:String=so.data.userName as String;
+				var pass:String=so.data.password as String;
+				_login.userNameTxt.text=user;
+				_login.passwordTxt.text=pass;
+				_login.cbox.selected=true;
+			}
+			else
+			{
+				_login.cbox.selected=false;
+			}
+			//=====================================
+			
+			if(so.data.openSound!=null && so.data.openSound == false)
+			{
+				_login.soundcbox.selected = false;
+				_soundSwitch = false;
+			}
+			else
+			{
+				_login.soundcbox.selected = true;
+				_soundSwitch = true;
+			}
+			//======================================
+			if(so.data.selectMainServer != null && so.data.selectMainServer == false)
+			{
+				_login.server2.selected = true;
+				_isMainLoginServer = false;
+			}
+			else
+			{
+				_login.server1.selected = true;
+				_isMainLoginServer = true;
+			}
+			
+		}
+		
+		private function onSoundHandler(evt:Event):void
+		{
+			var cb:CheckBox = evt.target as CheckBox;
+			if(cb.selected == true)
+			{
+				_soundSwitch = true;
+			}
+			else
+			{
+				_soundSwitch = false;
+			}
+		}
+		
+		private function onServerChange(evt:Event):void
+		{
+			var rgb:RadioButtonGroup = evt.target as RadioButtonGroup;
+			trace("rgb.selectedData = "+rgb.selectedData);
+			if(rgb.selectedData == 1)
+			{
+				_isMainLoginServer = true;
+			}
+			else
+			{
+				_isMainLoginServer = false;
+			}
+		}
+		
+		public function showUpdateWin():void
+		{
+			_updateSp = new Sprite();
+			_updateSp.graphics.beginFill(0x000000,0.2);
+			_updateSp.graphics.drawRect(0,0,500,400);
+			_updateSp.graphics.endFill();
+			this.addChild(_updateSp);
+			
+			var frame:_UpdateFrame = new _UpdateFrame();
+			_updateSp.addChild(frame);
+			//frame.scaleX = 0.8;
+			//frame.scaleY = 0.8;
+			
+			frame.x = (500-frame.width)/2;
+			frame.y = (400-frame.height)/2;
+			
+			frame.confirmBtn.addEventListener(MouseEvent.CLICK,	onConfirmClick);
+			frame.cancelBtn.addEventListener(MouseEvent.CLICK,	onCancelClick);
+			
+			function onConfirmClick(evt:MouseEvent):void
+			{
+				upManger.update();
+				_updateSp.removeChild(frame);
+				
+				_loadMc = new _Loading();
+				_updateSp.addChild(_loadMc);
+				//_loadMc.scaleX = 0.8;
+				//_loadMc.scaleY = 0.8;
+				
+				_loadMc.x = (500-_loadMc.width)/2;
+				_loadMc.y = (400-_loadMc.height)/2;
+				_loadMc.numTxt.text = "0%";
+				_loadMc.loadingBar.scaleX = 0;
+				
+				
+			}
+			
+			function onCancelClick(evt:MouseEvent):void
+			{
+				removeChild(_updateSp);
+			}
+			
+		}
+		
+		private function onKeyDownHandler(evt:KeyboardEvent):void
+		{
+			if(evt.keyCode == 8)
+			{
+				var so:SharedObject = SharedObject.getLocal("loginTwo");
+				if(null != so && null != so.data.userName && null != so.data.password)
+				{
+					delete so.data.userName;
+					delete so.data.password;
+					so.flush();
+				}
+			}
+			
+		}
+		
+		public function showLoading(loaded:Number,total:Number):void
+		{
+			var scal:Number = loaded/total;
+			_loadMc.loadingBar.scaleX = scal;
+			var resultStr:String = String(scal*100).substr(0,4) + "%";
+			_loadMc.numTxt.text = resultStr;
+			if(scal > 0.96)
+			{
+				_loadMc.numTxt.text = "100%";
+			}
+		}
+		
+		private function onLoginHandler(evt:MouseEvent):void
+		{
+			alertTxt.text="";
+			var urlloader:URLLoader=new URLLoader();
+			var userStr:String=_login.userNameTxt.text;
+			var passStr:String=_login.passwordTxt.text as String;
+			
+			userName = userStr;
+			
+			if(_isMainLoginServer == true)
+			{
+				TwoCaiPiao._preURL = TwoCaiPiao._sfLink;	//"http://gxsf13.xhcs188.com/";
+				TwoCaiPiao._ksLink = "http://gxks16.xhcs188.com/";
+			}
+			else
+			{
+				TwoCaiPiao._preURL = "http://kksf1588.mykcai.cn/";
+				TwoCaiPiao._ksLink = "http://kksf1688.mykcai.cn/";
+			}
+			TwoCaiPiao._loginURL = TwoCaiPiao._ksLink;
+			
+			var request:URLRequest=new URLRequest(TwoCaiPiao._loginURL+"/checkUserApi.aspx?user="+userStr+"&pass="+passStr);
+			request.method=URLRequestMethod.GET;
+			urlloader.load(request);
+			urlloader.addEventListener(Event.COMPLETE,			onLoginComplete);
+			urlloader.addEventListener(IOErrorEvent.IO_ERROR,	onErrorHandler);
+			
+			var flashStatus:String=null;
+			so = SharedObject.getLocal("loginTwo");
+			if(_login.cbox.selected==true)
+			{
+				so.data.userName=userStr;
+				so.data.password=passStr;
+			}
+			else
+			{
+				if(null != so && null != so.data.userName && null != so.data.password)
+				{
+					delete so.data.userName;
+					delete so.data.password;
+				}
+			}
+			so.data.openSound = (_login.soundcbox.selected == true);
+			so.data.selectMainServer = (_login.server1.selected == true);
+			
+			try
+			{
+				flashStatus = so.flush();
+			}
+			catch(err:Error)
+			{
+				trace("Error...Could not write SharedObject to disk\n")
+			}
+			
+			if(flashStatus != null)
+			{
+				switch(flashStatus)
+				{
+					case SharedObjectFlushStatus.PENDING:
+						so.addEventListener(NetStatusEvent.NET_STATUS,	onFlushStatus);
+						break;
+					case SharedObjectFlushStatus.FLUSHED:
+						trace("Value flushed to disk.\n");
+						break;
+				}
+			}
+		}
+		private function onLoginComplete(evt:Event):void
+		{
+			var re:String=evt.currentTarget.data as String;
+			if("ok"==re.substr(0,2))
+			{
+				init();
+				onLinkHeart();
+				_login.passwordTxt.text = "";
+			}
+			else if("online" == re.substr(0,6))
+			{
+				alertTxt.text="该用户正在登录";
+			}
+			else if("no"==re.substr(0,2))
+			{
+				alertTxt.text="用户名或密码错误！";
+			}
+		}
+		private function onErrorHandler(err:IOErrorEvent):void
+		{
+			trace("login error...");
+		}
+		private function init():void
+		{
+			_login.visible = false;
+			initLoader();
+			startHeart();
+			initListener();
+		}
+		// 加载双视频swf
+		private function initLoader():void
+		{
+			trace("登录成功，视频开始加载...");
+			
+			ksloader = new Loader();
+			ksloader.contentLoaderInfo.addEventListener(Event.COMPLETE,  ksHandler);
+			ksloader.addEventListener(IOErrorEvent.IO_ERROR,	onIOErrorHandler);
+			ksloader.load(new URLRequest("kuai.swf"));
+			this.addChild(ksloader);
+			ksloader.scaleX = 0.4165;
+			ksloader.scaleY = 0.565;
+			ksloader.visible=false;
+			
+			sfloader = new Loader();
+			sfloader.contentLoaderInfo.addEventListener(Event.COMPLETE,  openPrizeHandler);
+			sfloader.addEventListener(IOErrorEvent.IO_ERROR,	onIOErrorHandler);
+			sfloader.load(new URLRequest("CaiPiaoHeBin.swf"));
+			this.addChild(sfloader);
+			sfloader.scaleX = 0.392;
+			sfloader.scaleY = 0.495;
+			
+			//sfloader.visible = false;
+		}
+		
+		private function ksHandler(evt:Event):void
+		{
+			ksloader.content["isOpenSound"] = _soundSwitch;
+			ksloader.content["server_ip"] = TwoCaiPiao._ksLink;
+			
+			/*if(sfKuaiqihao != "")
+			{
+				(sfloader.content)["kuaiqihao"] = sfKuaiqihao;
+				(sfloader.content)["kuaishanOpenTime"] = sfKuaishanOpenTime;
+			}*/
+		}
+		
+		private function openPrizeHandler(evt:Event):void
+		{
+			//resultLoader.content.width=stage.stageWidth-26;
+			//resultLoader.content.height=stage.stageHeight-148;
+			//resultLoader.content["resultArr"]=[1,2,3,4,5];
+			//resultLoader.content["goPlay()"];
+			sfloader.content["link_Url"] = TwoCaiPiao._preURL;
+			sfloader.content["isOpenSound"] = _soundSwitch;
+			
+			(evt.target.content).init(this);
+		}
+		private function onIOErrorHandler(err:IOErrorEvent):void
+		{
+			trace(err.toString());
+		}
+		
+		private var showKuaiBoo:Boolean;	// 快三显示锁
+		private var showShiBoo:Boolean;		//快乐十分显示锁
+		// 初始化侦听
+		private function initListener():void
+		{
+			stage.nativeWindow.addEventListener(Event.RESIZE,	onResize);
+			//stage.addEventListener("ChangeFace",				changeFaceHandler);
+			//stage.addEventListener("ShowTen",					changeFaceHandler);
+			//stage.addEventListener("ShowThree",				changeFaceHandler);
+			stage.addEventListener("showKuaiShan",				changeFaceHandler);
+			stage.addEventListener("stopShowKuaiShan",			changeFaceHandler);
+			stage.addEventListener("hideKuaiLeiTen",			hideKuaiTenHandler);
+			stage.addEventListener("changeOpenTimeNow",			changeOpenTimeNowHandler);
+		}
+		
+		private var downLineTimeBoo:Boolean;
+		
+		private function hideKuaiTenHandler(evt:Event):void
+		{
+			downLineTimeBoo = true;
+			showKuaiBoo = false;
+			showShiBoo = false;
+			sfloader.visible = false;
+			ksloader.visible = true;
+		}
+		
+		private var sfKuaiqihao:String = "";
+		private var sfKuaishanOpenTime:String = "";
+		private function changeOpenTimeNowHandler(evt:Event):void
+		{
+			(sfloader.content)["kuaiqihao"] = String(ksloader.content["nextTermNum"]);
+			(sfloader.content)["kuaishanOpenTime"] = String(ksloader.content["thisOpenTime"]);
+			/*
+			if(sfloader.content != null)
+			{
+				(sfloader.content)["kuaiqihao"] = String(ksloader.content["nextTermNum"]);
+				(sfloader.content)["kuaishanOpenTime"] = String(ksloader.content["thisOpenTime"]);
+			}
+			else
+			{
+				sfKuaiqihao = String(ksloader.content["nextTermNum"]);
+				sfKuaishanOpenTime = String(ksloader.content["thisOpenTime"]);
+			}*/
+		}
+		
+		private var visiCount:int;		// 显示次数
+		private var isTenShow:Boolean = true;
+		private var isKuaiShow:Boolean;
+		private function changeFaceHandler(evt:Event):void
+		{
+			evt.stopImmediatePropagation();
+			
+			if(evt.type != "ShowThree" && downLineTimeBoo == true)
+			{
+				return;
+			}
+			else if(evt.type == "ShowThree" && downLineTimeBoo == true)
+			{
+				downLineTimeBoo = false;
+			}
+			
+			
+			if(!showKuaiBoo)
+			{
+				if(evt.type == "ChangeFace" && showShiBoo == false)
+				{
+					visiCount++;
+					
+					if(visiCount > 1)
+					{
+						if(visiCount >= 12) 
+						{
+							visiCount = 0;
+						}
+						return;
+					}
+					sfloader.visible = !sfloader.visible;
+					ksloader.visible = !ksloader.visible;
+				}
+				else if(evt.type == "ShowTen")
+				{
+					showShiBoo = true;
+					sfloader.visible = true;
+					ksloader.visible = false;
+				}
+				else if(evt.type == "ShowThree")
+				{
+					showShiBoo = false;
+					sfloader.visible = false;
+					ksloader.visible = true;
+				}
+			}
+			else
+			{
+				if(evt.type == "ShowThree")
+				{
+					showShiBoo = false;
+				}
+			}
+			
+			if(evt.type == "showKuaiShan")	// && showShiBoo == false
+			{
+				showKuaiBoo = true;
+				sfloader.visible = false;
+				ksloader.visible = true;
+			}
+			if(evt.type == "stopShowKuaiShan")
+			{
+				sfloader.visible = true;
+				ksloader.visible = false;
+				showKuaiBoo = false;
+			}
+			//evt.stopPropagation();
+		}
+		
+		private function onFlushStatus(event:NetStatusEvent):void
+		{
+			switch(event.info.code)
+			{
+				case "SharedObject.Flush.Success":
+					trace("User granted permission--value saved");
+					break;
+				case "SharedObject.Flush.Failed":
+					trace("User denied permission--value not saved");
+					break;
+			}
+			so.removeEventListener(NetStatusEvent.NET_STATUS,	onFlushStatus);
+		}
+		
+		/*开始心跳*/
+		private function startHeart():void
+		{
+			stage.nativeWindow.addEventListener(Event.CLOSING,	onClosehandler);
+			heartTime = new Timer(10000,int.MAX_VALUE);
+			heartTime.addEventListener(TimerEvent.TIMER,		onLinkHeart);
+			heartTime.start();
+			
+			changeTimer = new Timer(10000,int.MAX_VALUE);
+			changeTimer.addEventListener(TimerEvent.TIMER,		onChangeLoader);
+			//changeTimer.start();
+		}
+		private function onClosehandler(evt:Event):void
+		{
+			evt.preventDefault();
+			var urlloader:URLLoader = new URLLoader();
+			urlloader.load(new URLRequest(TwoCaiPiao._loginURL+"/OffLine.aspx?user="+_login.userNameTxt.text+"&r="+Math.random()));
+			urlloader.addEventListener(Event.COMPLETE,			onComplete);
+			urlloader.addEventListener(IOErrorEvent.IO_ERROR,	onError);
+			function onComplete(evt:Event):void
+			{
+				heartTime.stop();
+				stage.nativeWindow.close();
+			}
+			function onError(err:IOErrorEvent):void
+			{
+				stage.nativeWindow.close();
+			}
+		}
+		
+		private function onLinkHeart(evt:TimerEvent=null):void
+		{
+			if(userName == "")
+			{
+				sfloader.unloadAndStop(true);
+				removeChild(sfloader);
+				ksloader.unloadAndStop(true);
+				removeChild(ksloader);
+				sfloader = null;
+				ksloader = null;
+				
+				_login.visible = true;
+				count=0;
+				return;
+			}
+			
+			var uloader:URLLoader = new URLLoader();
+			var request:URLRequest = new URLRequest(TwoCaiPiao._loginURL+"/OnLine.aspx?user="+userName+"&count="+count+"&r="+Math.random());
+			uloader.load(request);
+			uloader.addEventListener(Event.COMPLETE,		onComplete);
+			uloader.addEventListener(IOErrorEvent.IO_ERROR,	onError);
+			count++;
+			function onComplete(evt:Event):void
+			{
+				var re:String = evt.currentTarget.data as String;
+				trace("re:"+re);
+				if("no"==re.substr(0,2))
+				{
+					// 移除双视频
+					if(sfloader != null)
+					{
+						sfloader.unloadAndStop(true);
+						removeChild(sfloader);
+						ksloader.unloadAndStop(true);
+						removeChild(ksloader);
+						sfloader = null;
+						ksloader = null;
+						
+						_login.visible = true;
+						count=0;
+					}
+				}
+			}
+			function onError(err:IOErrorEvent):void
+			{
+				
+			}
+		}
+		
+		private function onChangeLoader(evt:TimerEvent):void
+		{
+			sfloader.visible = !sfloader.visible;
+			ksloader.visible = !ksloader.visible;
+		}
+		
+		private function onResize(evt:Event):void
+		{
+			
+		}
+		
+	}
+}

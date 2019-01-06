@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="true" key="com.adobe.flexbuilder.project.ui.use.default.location"/>
+	<item value="false" key="com.adobe.flexbuilder.project.ui.last.apptype"/>
+	<section name="com.adobe.flexbuilder.help.ModulesPropertyPage">
+	</section>
+	<section name="ExportSigningOptions">
+		<list key="certificates">
+			<item value="D:\zhenshu.p12"/>
+			<item value="D:\mykanbox\p1.p12"/>
+			<item value="D:\微云同步盘\173021223\173021223\zhenshu.p12"/>
+			<item value=""/>
+		</list>
+	</section>
+</section>
